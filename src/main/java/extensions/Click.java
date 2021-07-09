@@ -5,8 +5,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import utilities.CommonOps;
 
-import static org.testng.Assert.assertTrue;
-
 public class Click extends CommonOps {
 
     public static void on(WebElement elem, String className, String value) {

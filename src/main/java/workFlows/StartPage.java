@@ -1,13 +1,11 @@
 package workFlows;
 
 import extensions.Click;
-import extensions.Log;
 import extensions.Return;
 import extensions.Verify;
 import org.openqa.selenium.WebElement;
 import utilities.CommonOps;
 
-import java.io.IOException;
 import java.util.List;
 
 public class StartPage extends CommonOps {
