@@ -10,13 +10,17 @@ import java.util.List;
 
 public class Variables extends CommonOps {
 
+    public Variables() {
+        super();
+    }
+
     public static String myElementName;
     public static String[] myElementsNames;
     public static Field[] fld;
     public static int counter = 0;
     public static String myElementNameCommaSeparated;
 
-    public static String getName(WebElement elem, String className, String name) {
+    public String getName(WebElement elem, String className, String name) {
         if (className.toLowerCase().contains("mainpage")) {
             fld = MainPageObjects.class.getDeclaredFields();
             for (Field field : fld) {
@@ -55,13 +59,20 @@ public class Variables extends CommonOps {
                 if (field.getName().contains(name)) {
                     myElementName = field.getName();
                 }
-                ;
+            }
+        }
+        else if (className.toLowerCase().contains("lessons")) {
+            fld = LessonsPageObjects.class.getDeclaredFields();
+            for (Field field : fld) {
+                if (field.getName().contains(name)) {
+                    myElementName = field.getName();
+                }
             }
         }
         return myElementName;
     }
 
-    public static String getNames(List<WebElement> elemList, String className, String[] names) {
+    public String getNames(List<WebElement> elemList, String className, String[] names) {
 
         if (className.toLowerCase().contains("profileweb")) {
             fld = MainPageObjects.class.getDeclaredFields();

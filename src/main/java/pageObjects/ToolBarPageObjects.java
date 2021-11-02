@@ -18,10 +18,10 @@ public class ToolBarPageObjects extends ManagePages {
     @AndroidFindBy(id =  "plusCapText")
     public MobileElement plusCapText;
 
-    @AndroidFindBy(id =  "gemsImage")
+    @AndroidFindBy(id = "gemsImage")
     public MobileElement gemsImage;
 
-    @AndroidFindBy(id =  "gemsText")
+    @AndroidFindBy(id = "gemsText")
     public MobileElement gemsText;
 
     @AndroidFindBy(id =  "numberHeartsText")

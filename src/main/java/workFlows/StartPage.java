@@ -6,80 +6,98 @@ import extensions.Verify;
 import org.openqa.selenium.WebElement;
 import utilities.CommonOps;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class StartPage extends CommonOps {
 
-    public static void checkingNumberOfFragmentsOnStartPage() {
-        if (homeMessageIcon())
-            Click.on(douUi.mainPage.touchOutside, prop.getProperty("mainPageClass"), "touchOutside");
-
-        List<WebElement> circleFragments = Return.list(douUi.mainPage.circleFragments, prop.getProperty("circleListId"));
-        Verify.listSize(circleFragments, prop.getProperty("expectedSizeOfFragmentsOnBigScreen"), prop.getProperty("mainPageClass"), "circleFragments");
+    public StartPage() {
+        super();
     }
 
-    public static boolean homeMessageIcon() {
-        return Verify.isElementPresented(douUi.mainPage.homeMessageIcon, prop.getProperty("mainPageClass"), "homeMessageIcon");
+    public void checkingNumberOfFragmentsOnStartPage() {
+        List<WebElement> circleFragments = manage.returnSome.list(douUi.mainPage.circleFragments, prop.getProperty("circleListId"));
+        manage.verify.listSize(circleFragments, prop.getProperty("expectedSizeOfFragmentsOnBigScreen"), prop.getProperty("mainPageClass"), "circleFragments");
     }
 
-    public static void toolbarHeartSectionCheck() {
-        if (homeMessageIcon())
-            Click.on(douUi.mainPage.touchOutside, prop.getProperty("mainPageClass"), "touchOutside");
+    public boolean homeMessageIcon() {
+        return manage.verify.isElementPresented(douUi.mainPage.homeMessageIcon,
+                prop.getProperty("mainPageClass"), "homeMessageIcon")
+                && manage.verify.isElementPresented(douUi.mainPage.homeMessageNoThanksButton,
+                prop.getProperty("mainPageClass"), "homeMessageNoThanksButton");
+    }
 
-        Click.on(douUi.toolbar.heartsToolBar, prop.getProperty("toolBarClass"), "currencyToolBar");
-        Verify.elementIsDisplayed(douUi.toolbar.plusCapText,
-                prop.getProperty("toolBarClass"), "currencyChestImage");
-        Verify.elementIsDisplayed(douUi.toolbar.gemsImage, prop.getProperty("toolBarClass"), "gemsImage");
-        Verify.elementIsDisplayed(douUi.toolbar.gemsText, prop.getProperty("toolBarClass"), "gemsText");
-        Verify.elementIsDisplayed(douUi.toolbar.numberOfHeartsText,
+    public void toolbarHeartSectionCheck() {
+        if (homeMessageIcon())
+            manage.click.on(douUi.mainPage.touchOutside, prop.getProperty("mainPageClass"), "touchOutside");
+
+        manage.click.on(douUi.toolbar.heartsToolBar, prop.getProperty("toolBarClass"), "heartsToolBar");
+        manage.verify.elementIsDisplayed(douUi.toolbar.plusCapText, prop.getProperty("toolBarClass"), "plusCapText");
+        manage.verify.elementIsDisplayed(douUi.toolbar.gemsImage, prop.getProperty("toolBarClass"), "gemsImage");
+        manage.verify.elementIsDisplayed(douUi.toolbar.gemsText, prop.getProperty("toolBarClass"), "gemsText");
+        manage.verify.elementIsDisplayed(douUi.toolbar.numberOfHeartsText,
                 prop.getProperty("toolBarClass"), "numberOfHeartsText");
-        Verify.elementIsDisplayed(douUi.toolbar.heartsTimerText,
+        manage.verify.elementIsDisplayed(douUi.toolbar.heartsTimerText,
                 prop.getProperty("toolBarClass"), "heartsTimerText");
-        Verify.elementIsDisplayed(douUi.toolbar.shieldHeartImage,
+        manage.verify.elementIsDisplayed(douUi.toolbar.shieldHeartImage,
                 prop.getProperty("toolBarClass"), "shieldHeartImage");
-        Verify.elementIsDisplayed(douUi.toolbar.unlimitedHeartText,
+        manage.verify.elementIsDisplayed(douUi.toolbar.unlimitedHeartText,
                 prop.getProperty("toolBarClass"), "unlimitedHeartText");
-        Verify.elementIsDisplayed(douUi.toolbar.getPlusText, prop.getProperty("toolBarClass"), "getPlusText");
-        Verify.elementIsDisplayed(douUi.toolbar.refillHeartImageDisabled,
+        manage.verify.elementIsDisplayed(douUi.toolbar.getPlusText, prop.getProperty("toolBarClass"), "getPlusText");
+        manage.verify.elementIsDisplayed(douUi.toolbar.refillHeartImageDisabled,
                 prop.getProperty("toolBarClass"), "refillHeartImageDisabled");
-        Verify.elementIsDisplayed(douUi.toolbar.refillText, prop.getProperty("toolBarClass"), "refillText");
-        Verify.elementIsDisplayed(douUi.toolbar.gemsPriceRefill,
+        manage.verify.elementIsDisplayed(douUi.toolbar.refillText, prop.getProperty("toolBarClass"), "refillText");
+        manage.verify.elementIsDisplayed(douUi.toolbar.gemsPriceRefill,
                 prop.getProperty("toolBarClass"), "gemsPriceRefill");
-        Verify.elementIsDisplayed(douUi.toolbar.gemImageOnRefillSection,
+        manage.verify.elementIsDisplayed(douUi.toolbar.gemImageOnRefillSection,
                 prop.getProperty("toolBarClass"), "gemImageOnRefillSection");
-        Verify.elementIsDisplayed(douUi.toolbar.practiceHeartImage,
+        manage.verify.elementIsDisplayed(douUi.toolbar.practiceHeartImage,
                 prop.getProperty("toolBarClass"), "practiceHeartImage");
-        Verify.elementIsDisplayed(douUi.toolbar.howMuchToEarn, prop.getProperty("toolBarClass"), "howMuchToEarn");
-        Verify.elementIsDisplayed(douUi.toolbar.practiceText, prop.getProperty("toolBarClass"), "practiceText");
+        manage.verify.elementIsDisplayed(douUi.toolbar.howMuchToEarn,
+                prop.getProperty("toolBarClass"), "howMuchToEarn");
+        manage.verify.elementIsDisplayed(douUi.toolbar.practiceText,
+                prop.getProperty("toolBarClass"), "practiceText");
     }
 
-    public static void toolbarCrownsCheck() {
+    public void compareHeartsToHeartText() {
+        manage.verify.elementIsDisplayed(douUi.toolbar.heartsToolBar,
+                prop.getProperty("toolBarClass"), "heartsToolBar");
+        String numberOfAvailableHeartsInToolBar = douUi.toolbar.heartsToolBar.getAttribute("content-desc");
+        manage.click.on(douUi.toolbar.heartsToolBar,
+                prop.getProperty("toolBarClass"), "heartsToolBar");
+        manage.verify.elementIsDisplayed(douUi.toolbar.numberOfHeartsText,
+                prop.getProperty("toolBarClass"), "numberOfHeartsText");
+        String numberOfAvailableHeartsInHeartsSection = douUi.toolbar.numberOfHeartsText.getAttribute("content-desc");
+        manage.verify.textBetweenTwoElements(numberOfAvailableHeartsInToolBar, numberOfAvailableHeartsInHeartsSection);
+    }
+
+    public void toolbarCrownsCheck() {
         if (homeMessageIcon())
-            Click.on(douUi.mainPage.touchOutside, prop.getProperty("mainPageClass"), "touchOutside");
+            manage.click.on(douUi.mainPage.touchOutside, prop.getProperty("mainPageClass"), "touchOutside");
         crownsSection();
         progressQuizSection();
     }
 
     public static void crownsSection() {
-        Click.on(douUi.toolbar.crownsToolBar, prop.getProperty("toolBarClass"), "crownsToolBar");
-        Verify.textBetweenTwoElements(
-                Return.elementById(douUi.toolbar.crownsToolBar, "itemButton"),
+        manage.click.on(douUi.toolbar.crownsToolBar, prop.getProperty("toolBarClass"), "crownsToolBar");
+        manage.verify.textBetweenTwoElements(
+                manage.returnSome.elementById(douUi.toolbar.crownsToolBar, "itemButton"),
                 douUi.toolbar.crownsDeepCrownCount,
                 prop.getProperty("toolBarClass"),
                 prop.getProperty("toolBarClass"),
                 "crownsToolBar",
                 "crownsDeepCrownCount"
         );
-        Verify.elementIsDisplayed(douUi.toolbar.crownsDeepCrownIcon, prop.getProperty("toolBarClass"), "crownsDeepCrownIcon");
-        Verify.elementIsDisplayed(douUi.toolbar.crownsDeepTitle, prop.getProperty("toolBarClass"), "crownsDeepTitle");
-        Verify.textInElement(
+        manage.verify.elementIsDisplayed(douUi.toolbar.crownsDeepCrownIcon, prop.getProperty("toolBarClass"), "crownsDeepCrownIcon");
+        manage.verify.elementIsDisplayed(douUi.toolbar.crownsDeepTitle, prop.getProperty("toolBarClass"), "crownsDeepTitle");
+        manage.verify.textInElement(
                 douUi.toolbar.crownsDeepTitle,
                 prop.getProperty("crownsDeepTitle"),
                 prop.getProperty("toolBarClass"),
                 "crownsDeepTitle"
         );
-        Verify.elementIsDisplayed(douUi.toolbar.crownsDeepText, prop.getProperty("toolBarClass"), "crownsDeepText");
-        Verify.textInElement(
+        manage.verify.elementIsDisplayed(douUi.toolbar.crownsDeepText, prop.getProperty("toolBarClass"), "crownsDeepText");
+        manage.verify.textInElement(
                 douUi.toolbar.crownsDeepText,
                 prop.getProperty("crownsDeepText"),
                 prop.getProperty("toolBarClass"),
@@ -87,28 +105,28 @@ public class StartPage extends CommonOps {
         );
     }
     public static void progressQuizSection() {
-        Verify.elementIsDisplayed(douUi.toolbar.progressQuizIcon, prop.getProperty("toolBarClass"), "progressQuizIcon");
-        Verify.elementIsDisplayed(douUi.toolbar.progressQuizTitle, prop.getProperty("toolBarClass"), "progressQuizTitle");
-        Verify.textInElement(
+        manage.verify.elementIsDisplayed(douUi.toolbar.progressQuizIcon, prop.getProperty("toolBarClass"), "progressQuizIcon");
+        manage.verify.elementIsDisplayed(douUi.toolbar.progressQuizTitle, prop.getProperty("toolBarClass"), "progressQuizTitle");
+        manage.verify.textInElement(
                 douUi.toolbar.progressQuizTitle,
                 prop.getProperty("progressQuizTitle"),
                 prop.getProperty("toolBarClass"),
                 "progressQuizTitle"
         );
-        Verify.elementIsDisplayed(douUi.toolbar.progressQuizText, prop.getProperty("toolBarClass"), "progressQuizText");
-        Verify.textInElement(
+        manage.verify.elementIsDisplayed(douUi.toolbar.progressQuizText, prop.getProperty("toolBarClass"), "progressQuizText");
+        manage.verify.textInElement(
                 douUi.toolbar.progressQuizText,
                 prop.getProperty("progressQuizText"),
                 prop.getProperty("toolBarClass"),
                 "progressQuizText");
-        Verify.elementIsClickable(douUi.toolbar.progressQuizButtonDuoPlus,  prop.getProperty("toolBarClass"), "progressQuizButtonDuoPlus");
-        Verify.textInElement(
+        manage.verify.elementIsClickable(douUi.toolbar.progressQuizButtonDuoPlus,  prop.getProperty("toolBarClass"), "progressQuizButtonDuoPlus");
+        manage.verify.textInElement(
                 douUi.toolbar.progressQuizButtonDuoPlus,
                 prop.getProperty("progressQuizButtonDuoPlus"),
                 prop.getProperty("toolBarClass"),
                 "progressQuizButtonDuoPlus"
         );
-        Click.on(douUi.toolbar.progressQuizButtonDuoPlus, prop.getProperty("toolBarClass"), "progressQuizButtonDuoPlus");
-        Verify.elementIsDisplayed(douUi.duoPlus.plusLogo, prop.getProperty("duoPlusClass"), "plusLogo");
+        manage.click.on(douUi.toolbar.progressQuizButtonDuoPlus, prop.getProperty("toolBarClass"), "progressQuizButtonDuoPlus");
+        manage.verify.elementIsDisplayed(douUi.duoPlus.plusLogo, prop.getProperty("duoPlusClass"), "plusLogo");
     }
 }

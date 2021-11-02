@@ -26,11 +26,38 @@ public class MainPageObjects extends ManagePages {
     @AndroidFindBy( id = "homeMessageText")
     public MobileElement homeMessageText;
 
+    @AndroidFindBy( id = "homeMessageSecondaryButton")
+    public MobileElement homeMessageNoThanksButton;
+
     @AndroidFindBy( id = "homeMessagePrimaryButton")
     public MobileElement homeMessagePrimaryButton;
 
     @AndroidFindBy( id = "touch_outside")
     public MobileElement touchOutside;
+
+    @AndroidFindBy( xpath = "//*[@id='skillNode1' and //*[//*[@text='Basics 1']]]")
+    public MobileElement basic1_1stExc;
+
+    @AndroidFindBy( id = "levelCrown")
+    public MobileElement levelCrown;
+
+    @AndroidFindBy( id = "skillTreeView")
+    public MobileElement allExcercises;
+
+    @AndroidFindBy(id = "tipsTextButton")
+    public MobileElement tipsButton;
+
+    @AndroidFindBy(id = "sessionButton")
+    public MobileElement regularLessonButton;
+
+    @AndroidFindBy(id = "hardModeSessionButton")
+    public MobileElement hardLessonButton;
+
+
+
+
+
+
 
 
 
