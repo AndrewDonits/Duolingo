@@ -14,7 +14,8 @@ You will need the following details:
 After that paste it in src/main/Configuration/properties.properties file under the following key: "EmulatorUUID"
 
 2. Install Duolingo app on your device. You can drag the apk file to your emulator or just install it on the real device you are going to use. <br />
-The app is located here: src/main/App/duolingo-5-16-5.apk. Don't worry the app won't harm your device.
+Link to download the app: https://drive.google.com/drive/folders/1ueeKTOgXRItQAu3FrxdNHNSZG0cDsnIr?usp=sharing. <br />
+Don't worry the app won't harm your device.
 
 3. Install appium client or appium server and make sure it is running on port number: 4723 (it is the default one, so you don't need to change anything)
 
