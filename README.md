@@ -21,4 +21,7 @@ Don't worry the app won't harm your device.
 
 4. Choose a test or run all tests together
 
+# Notes:
+* I recommend using Intellij software to run this project
+
 # Enjoy!
